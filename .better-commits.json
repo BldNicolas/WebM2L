@@ -20,6 +20,12 @@
                 "emoji": "🎨"
             },
             {
+                "value": "database",
+                "label": "database",
+                "hint": "Migration or database related",
+                "emoji": "💾"
+            },
+            {
                 "value": "fix",
                 "label": "fix",
                 "hint": "A bug fix",
