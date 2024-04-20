@@ -1,11 +1,17 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    $events = App\Models\Event::all();
+    $user = Auth::user();
+    return view('index', [
+        'events' => $events,
+        'user' => $user,
+    ]);
+})->name('index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
