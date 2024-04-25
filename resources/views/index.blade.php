@@ -33,12 +33,11 @@
             </div>
         @endif
         @foreach($events as $event)
-            <li>
-                <!-- TODO : get user name from event -->
+            <li class="p-5 bg">
+                <div>{{ $event->user->first_name }} {{ $event->user->last_name }}</div>
                 <!-- TODO : get picture from event -->
                 <div>{{ $event->title }}</div>
                 <div>{{ $event->content }}</div>
-                <div>@dump($event)</div>
             </li>
         @endforeach
     </ul>
