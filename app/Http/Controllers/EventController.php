@@ -21,9 +21,9 @@ class EventController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        //
+        return view('events.create');
     }
 
     /**
@@ -39,7 +39,7 @@ class EventController extends Controller
 
         $request->user()->events()->create($validated);
 
-        return redirect()->route('events.index');
+        return redirect()->route('index');
     }
 
     /**
