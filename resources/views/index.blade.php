@@ -26,19 +26,20 @@
     @endif
     <h2>{{ __('Prêt(e) à vous lancer dans la compétition ?') }}</h2>
     <h3>{{ __('Voici les évènements disponibles :') }}</h3>
-    <ul>
-        @if(empty($events))
-            <div>
-                {{ __('Il n\'y a pas d\'évènements de créé, soyez le premier à en créer un !') }}
-            </div>
-        @endif
-        @foreach($events as $event)
-            <li class="p-5 bg">
-                <div>{{ $event->user->first_name }} {{ $event->user->last_name }}</div>
-                <!-- TODO : get picture from event -->
-                <div>{{ $event->title }}</div>
-                <div>{{ $event->content }}</div>
-            </li>
-        @endforeach
-    </ul>
+    @if(empty($events[0]))
+        <div>
+            {{ __('Il n\'y a pas d\'évènements de créé, soyez le premier à en créer un !') }}
+        </div>
+    @else
+        <ul>
+            @foreach($events as $event)
+                <li class="p-5 bg">
+                    <div>{{ $event->user->first_name }} {{ $event->user->last_name }}</div>
+                    <!-- TODO : get picture from event -->
+                    <div>{{ $event->title }}</div>
+                    <div>{{ $event->content }}</div>
+                </li>
+            @endforeach
+        </ul>
+    @endif
 </x-app-layout>
