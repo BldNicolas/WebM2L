@@ -23,7 +23,16 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/events', [EventController::class, 'create'])->name('events.create');
     Route::post('/events', [EventController::class, 'store'])->name('events.store');
-    Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
+    Route::delete('events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
 });
+
+Route::get('/admin', function () {
+    $events = App\Models\Event::all();
+    $users = App\Models\User::all();
+    return view('admin.index', [
+        'events' => $events,
+        'users' => $users,
+    ]);
+})->middleware('auth', \App\Http\Middleware\Admin::class)->name('admin.index');
 
 require __DIR__.'/auth.php';

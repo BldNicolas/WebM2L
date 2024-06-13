@@ -30,6 +30,15 @@
                         {{ __('Nouvel évènement') }}
                     </x-nav-link>
                 </div>
+
+                <!-- Admin Links -->
+                @if(Auth::user() && Auth::user()->is_admin)
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
+                            {{ __('Administrer') }}
+                        </x-nav-link>
+                    </div>
+                @endif
             </div>
 
             @if(Auth::user())

@@ -6,6 +6,7 @@ use App\Models\Event;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
 class EventController extends Controller
@@ -69,8 +70,9 @@ class EventController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Event $event)
+    public function destroy(Event $event): RedirectResponse
     {
-        //
+        $event->delete();
+        return Redirect::to('/admin');
     }
 }
