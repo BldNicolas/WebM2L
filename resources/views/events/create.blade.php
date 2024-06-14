@@ -1,25 +1,29 @@
 <x-app-layout>
-    <x-slot name="events">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+    <x-slot name="header">
+        <h1 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Nouvel évènement') }}
-        </h2>
+        </h1>
     </x-slot>
 
-    <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
-        <form method="POST" action="{{ route('events.store') }}">
-            @csrf
+    <form method="POST" action="{{ route('events.store') }}" class="py-20 px-96 w-full flex flex-col gap-3.5 items-center">
+        @csrf
+        <div class="w-full">
+            <div>{{ __('Titre de l\'évènement :') }}</div>
             <textarea
                 name="title"
-                placeholder="{{ __('Titre de l\'évènement') }}"
-                class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                placeholder="{{ __('Votre titre de l\'évènement') }}"
+                class="p-2 rounded-xl resize-none h-11 w-full border-three"
             >{{ old('title') }}</textarea>
+        </div>
+        <div class="w-full">
+            <div>{{ __('Contenu de l\'évènement :') }}</div>
             <textarea
                 name="content"
-                placeholder="{{ __('Contenu de l\'évènement') }}"
-                class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                placeholder="{{ __('Votre contenu de l\'évènement') }}"
+                class="p-2 rounded-xl resize-none h-auto w-full border-three"
             >{{ old('content') }}</textarea>
-            <x-input-error :messages="$errors->get('message')" class="mt-2" />
-            <x-primary-button class="mt-4">{{ __('Poster l\'évènement') }}</x-primary-button>
-        </form>
-    </div>
+        </div>
+        <x-input-error :messages="$errors->get('message')" class="mt-2" />
+        <x-primary-button>{{ __('Ajouter l\'évènement') }}</x-primary-button>
+    </form>
 </x-app-layout>

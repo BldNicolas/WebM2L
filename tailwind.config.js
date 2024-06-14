@@ -12,7 +12,20 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Pink Sunset', ...defaultTheme.fontFamily.sans],
+            },
+            colors: {
+                'one': '#8ECAE6',
+                'two': '#219EBC',
+                'three': '#023047',
+                'four': '#FFB703',
+                'five': '#FB8500',
+            },
+            backgroundImage: {
+                'default-bg': "url('/background.jpeg')",
+            },
+            lineHeight: {
+                'inherit': 'inherit',
             },
         },
     },

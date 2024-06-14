@@ -1,24 +1,20 @@
-<x-app-layout>
-    <x-slot name="Nouvel évènement">
-        <h1 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Nouvel évènement') }}
-        </h1>
-    </x-slot>
-    <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
-        <form method="POST" action="{{ route('events.store') }}">
-            @csrf
-            <textarea
-                name="title"
-                placeholder="{{ __('Titre de l\'évènement') }}"
-                class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-            >{{ old('title') }}</textarea>
-            <textarea
-                name="content"
-                placeholder="{{ __('Contenu de l\'évènement') }}"
-                class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-            >{{ old('content') }}</textarea>
-            <x-input-error :messages="$errors->get('message')" class="mt-2" />
-            <x-primary-button class="mt-4">{{ __('Event') }}</x-primary-button>
-        </form>
-    </div>
-</x-app-layout>
+<ul class="flex flex-col gap-6 px-12">
+    @foreach($events as $event)
+        <li class="flex flex-col gap-2.5 py-2.5">
+            <div class="flex gap-3">
+                <!-- TODO : get picture from event -->
+                <div class="w-24 h-24 rounded-full border-4 border-white bg-default-bg bg-cover text-7xl leading-inherit text-center content-center">
+                    {{ strtoupper(mb_substr($event->title, 0, 1)) }}
+                </div>
+                <div class="flex flex-col gap-2.5">
+                    <div>{{ $event->user->first_name }} {{ $event->user->last_name }}</div>
+                    <div class="text-5xl">{{ $event->title }}</div>
+                </div>
+            </div>
+            <div>{{ $event->content }}</div>
+        </li>
+        @if(count($events)>1)
+            <hr class="border-two">
+        @endif
+    @endforeach
+</ul>
