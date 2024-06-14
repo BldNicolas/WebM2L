@@ -75,4 +75,6 @@ class EventController extends Controller
         $event->delete();
         return Redirect::to('/admin');
     }
+
+
 }
